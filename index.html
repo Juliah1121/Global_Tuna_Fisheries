@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>全球鮪類資源查詢</title>
+<meta name="description" content="五個鮪類區域漁業組織（IATTC、ICCAT、IOTC、WCPFC、CCSBT）的國家別漁獲、國別配額、CMSY++ 資源評估與 ISSF 正式評估對照。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;600&display=swap">
+<style>
+/* Layout: one centred column, cards on a tinted ground. Tokens mirror the Dashboard runtime the page was built for. */
+:root {
+  color-scheme: light;
+  --font-anthropic-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-anthropic-serif: "Noto Serif TC", "Songti TC", "PMingLiU", Georgia, serif;
+  --color-bg: #f5f6f4; --color-panel: #ffffff; --color-fg: #1d2421; --color-fg-muted: #5d6863;
+  --color-border-line: #dfe3e0; --color-ok: #1f7a4d; --color-warn: #a77a00; --color-bad: #b8392f;
+  --cds-chart-grid: #ebeeec; --cds-chart-axis: #b7bfba; --cds-chart-reference: #7a847f; --cds-chart-muted: #b9c1bd;
+  --cds-surface-popover: #ffffff; --cds-border: #d3d9d5; --cds-shadow-popover: 0 4px 16px rgba(20, 30, 25, .12);
+  --cds-text-secondary: #5d6863;
+  --series-1: #1f6f8b; --series-2: #c06a2b; --series-3: #4b8f3a; --series-4: #8b3f7a; --series-5: #2f4f9e; --series-6: #b39024; --series-7: #3c8c84; --series-8: #8a5a44;
+  --cds-font-size-caption: 12px; --cds-font-size-body: 14px; --cds-font-size-heading: 16px; --cds-font-size-title: 26px;
+  --cds-font-weight-medium: 600;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 16px; --cds-gap-lg: 24px;
+  --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 18px;
+  --cds-radius: 8px; --cds-dur-slow: 300ms;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-bg: #121614; --color-panel: #1b201e; --color-fg: #e6ebe8; --color-fg-muted: #9aa6a0;
+    --color-border-line: #2e3633; --color-ok: #5fbf8a; --color-warn: #d9b44a; --color-bad: #e8776c;
+    --cds-chart-grid: #262d2a; --cds-chart-axis: #4a5450; --cds-chart-reference: #8d9893; --cds-chart-muted: #56615c;
+    --cds-surface-popover: #222826; --cds-border: #38423e; --cds-shadow-popover: 0 4px 16px rgba(0, 0, 0, .45);
+    --cds-text-secondary: #9aa6a0;
+    --series-1: #5fb3d1; --series-2: #e3955a; --series-3: #7fc46b; --series-4: #c983b8; --series-5: #8aa4ea; --series-6: #d9bb55; --series-7: #6cc1b8; --series-8: #c49278;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #121614; --color-panel: #1b201e; --color-fg: #e6ebe8; --color-fg-muted: #9aa6a0;
+  --color-border-line: #2e3633; --color-ok: #5fbf8a; --color-warn: #d9b44a; --color-bad: #e8776c;
+  --cds-chart-grid: #262d2a; --cds-chart-axis: #4a5450; --cds-chart-reference: #8d9893; --cds-chart-muted: #56615c;
+  --cds-surface-popover: #222826; --cds-border: #38423e; --cds-shadow-popover: 0 4px 16px rgba(0, 0, 0, .45);
+  --cds-text-secondary: #9aa6a0;
+  --series-1: #5fb3d1; --series-2: #e3955a; --series-3: #7fc46b; --series-4: #c983b8; --series-5: #8aa4ea; --series-6: #d9bb55; --series-7: #6cc1b8; --series-8: #c49278;
+}
+html, body { margin: 0; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+body { background: var(--color-bg); color: var(--color-fg); font-family: var(--font-anthropic-sans); font-size: 14px; line-height: 1.5; }
+#dash-root { max-width: 1280px; margin-inline: auto; padding-block: 24px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.dash-skeleton { position: relative; color: transparent !important; }
+.dash-skeleton::after { content: ""; position: absolute; left: 0; top: 50%; width: min(8rem, 80%); height: .9em; transform: translateY(-50%);
+  border-radius: 6px; background: var(--cds-chart-grid); }
+@media (prefers-reduced-motion: no-preference) {
+  .dash-skeleton::after { animation: tu-pulse 1.2s ease-in-out infinite; }
+  @keyframes tu-pulse { 50% { opacity: .45; } }
+}
+.site-foot { margin-top: 32px; font-size: 12px; color: var(--color-fg-muted); border-top: 1px solid var(--color-border-line); padding-top: 12px; }
+.site-foot a { color: inherit; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="dash-shim.js"></script>
+</head>
+<body>
+<div id="dash-root">
+<style>
+.tu { font-family: var(--font-anthropic-sans); color: var(--color-fg); display: flex; flex-direction: column; gap: var(--cds-gap-lg); }
+.tu-head { display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.tu-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.tu-lede { color: var(--color-fg-muted); margin: 0; max-width: 72ch; line-height: 1.6; }
+.tu-tabs { display: flex; flex-wrap: wrap; gap: 2px; border-bottom: 1px solid var(--color-border-line); }
+.tu-tab { appearance: none; background: none; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; padding: var(--cds-pad-sm) var(--cds-pad-md); font: inherit; color: var(--color-fg-muted); cursor: pointer; }
+.tu-tab[aria-selected="true"] { color: var(--color-fg); border-bottom-color: var(--color-fg); }
+.tu-tab:hover { color: var(--color-fg); }
+.tu-tab:focus-visible, .tu-click:focus-visible, .tu-btn:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.tu-page { display: flex; flex-direction: column; gap: var(--cds-gap-lg); }
+.tu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--cds-gap-md); }
+.tu-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; position: relative; display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.tu-card h2, .tu-sec { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; text-wrap: balance; }
+.tu-note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; line-height: 1.5; }
+.tu-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); }
+.tu-kpi { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.tu-kpi .tu-v { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.2; overflow-wrap: anywhere; }
+.tu-kpi .tu-l { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.tu-filters { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); align-items: flex-end; }
+.tu-field { display: flex; flex-direction: column; gap: 3px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); min-width: 0; }
+.tu-field select, .tu-field input { font: inherit; font-size: var(--cds-font-size-body); color: var(--color-fg); background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 5px 8px; max-width: min(18rem, 100%); }
+.tu-btn { font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg); background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 6px 10px; cursor: pointer; }
+.tu-btn:hover { border-color: var(--color-fg-muted); }
+.tu-chart { width: 100%; position: relative; min-width: 0; }
+.tu-chart svg { display: block; overflow: visible; }
+.tu-h260 { min-height: 260px; } .tu-h300 { min-height: 300px; } .tu-h420 { min-height: 420px; }
+.tu-tick, .tu-axis text { font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans); }
+.tu-plab { font-size: 11px; }
+.tu-tip { position: absolute; z-index: 5; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); min-width: 9rem; max-width: 18rem; }
+.tu-tip-h { color: var(--cds-text-secondary); margin-bottom: 2px; }
+.tu-tip-r { display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
+.tu-tip-l { flex: 1; } .tu-tip-v { text-align: right; }
+.tu-sw { display: inline-block; width: 9px; height: 9px; border-radius: 2px; flex: none; }
+.tu-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.tu-leg { display: inline-flex; align-items: center; gap: 5px; }
+.tu-bars { display: flex; flex-direction: column; gap: 4px; }
+.tu-bar { display: grid; grid-template-columns: minmax(6rem, 11rem) 1fr auto; gap: 8px; align-items: center; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.tu-bar-l { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tu-bar-t { height: 12px; background: var(--cds-chart-grid); border-radius: 6px; overflow: hidden; }
+.tu-bar-f { height: 100%; border-radius: 6px; }
+.tu-bar-v { text-align: right; color: var(--color-fg-muted); min-width: 7rem; }
+.tu-click { cursor: pointer; }
+.tu-bar.tu-click:hover .tu-bar-l { text-decoration: underline; }
+.tu-tablewrap { max-height: 34rem; overflow: auto; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); }
+table.tu-table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.tu-table th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-weight: var(--cds-font-weight-medium); padding: 6px 8px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; z-index: 1; }
+.tu-table th button { all: unset; cursor: pointer; }
+.tu-table th button:focus-visible { outline: 2px solid var(--color-fg); }
+.tu-table td { padding: 5px 8px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.tu-table td.tu-num, .tu-table th.tu-num { text-align: right; }
+.tu-table tbody tr.tu-click:hover { background: var(--cds-chart-grid); }
+.tu-zone { display: inline-flex; align-items: center; gap: 5px; }
+.tu-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex: none; }
+.tu-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--cds-gap-md); }
+.tu-zbar { display: grid; grid-template-columns: minmax(5rem, 9rem) 1fr; gap: 8px; align-items: center; font-size: var(--cds-font-size-caption); }
+.tu-zseg { display: flex; height: 18px; border-radius: 4px; overflow: hidden; }
+.tu-zseg span { display: flex; align-items: center; justify-content: center; color: var(--color-bg); font-size: 11px; font-variant-numeric: tabular-nums; }
+.tu-prose { max-width: 75ch; line-height: 1.7; display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.tu-prose h2 { margin: var(--cds-gap-sm) 0 0; }
+.tu-prose p, .tu-prose ul { margin: 0; }
+.tu-prose li { margin-bottom: 4px; }
+.tu-badge { display: inline-block; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); border-radius: 999px; padding: 1px 8px; color: var(--color-fg-muted); }
+.tu-failed { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.tu-failed::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+[data-dash-source-state=empty] { color: transparent; }
+.tu-warnline { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); border-left: 3px solid var(--color-border-line); padding-left: 8px; }
+.tu-qbar { display: grid; grid-template-columns: minmax(6rem, 12rem) 1fr minmax(9rem, auto); gap: 8px; align-items: center; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.tu-qtrack { position: relative; height: 14px; }
+.tu-qlim { position: absolute; left: 0; top: 0; bottom: 0; background: var(--cds-chart-grid); border: 1px solid var(--color-border-line); border-radius: 4px; }
+.tu-qcatch { position: absolute; left: 0; top: 3px; bottom: 3px; border-radius: 3px; }
+.tu-table a { color: inherit; }
+</style>
+
+<div class="tu" id="tu-top">
+  <header class="tu-head">
+    <h1>全球鮪類資源查詢</h1>
+    <p class="tu-lede">五個鮪類區域漁業組織（IATTC、ICCAT、IOTC、WCPFC、CCSBT）的國家別、漁法別漁獲，以及 CMSY++ 資源評估與 ISSF 正式評估對照。
+      分析了 <span data-source="kpis" data-field="n_units">—</span> 個洋區系群；
+      CMSY++ 估出的 MSY 與正式評估相近（比值中位數 <span data-source="kpis" data-field="msy_ratio_median">—</span>），
+      但只用漁獲時，B/Bmsy 與 F/Fmsy 的判定普遍偏悲觀。</p>
+  </header>
+
+  <nav class="tu-tabs" role="tablist" aria-label="頁面">
+    <button class="tu-tab" role="tab" data-tab="overview" aria-selected="true">總覽</button>
+    <button class="tu-tab" role="tab" data-tab="catch" aria-selected="false">漁獲查詢</button>
+    <button class="tu-tab" role="tab" data-tab="quota" aria-selected="false">配額</button>
+    <button class="tu-tab" role="tab" data-tab="cmsy" aria-selected="false">CMSY 結果</button>
+    <button class="tu-tab" role="tab" data-tab="detail" aria-selected="false">系群詳細</button>
+    <button class="tu-tab" role="tab" data-tab="issf" aria-selected="false">與 ISSF 比較</button>
+    <button class="tu-tab" role="tab" data-tab="method" aria-selected="false">方法與限制</button>
+  </nav>
+
+  <!-- ============ 總覽 ============ -->
+  <section class="tu-page" id="overview">
+    <div class="tu-kpis">
+      <div class="tu-kpi"><span class="tu-v dash-skeleton" data-source="kpis" data-field="catch_2024">—</span><span class="tu-l">2024 年五組織漁獲合計（公噸）</span></div>
+      <div class="tu-kpi"><span class="tu-v dash-skeleton" data-source="kpis" data-field="n_flags">—</span><span class="tu-l">國家／船旗（不含不明、混合）</span></div>
+      <div class="tu-kpi"><span class="tu-v dash-skeleton" data-source="kpis" data-field="n_units">—</span><span class="tu-l">CMSY++ 分析系群</span></div>
+      <div class="tu-kpi"><span class="tu-v dash-skeleton" data-source="kpis" data-field="n_red">—</span><span class="tu-l">最終年落在紅區（B&lt;Bmsy 且 F&gt;Fmsy）</span></div>
+      <div class="tu-kpi"><span class="tu-v dash-skeleton" data-source="kpis" data-field="msy_ratio_median">—</span><span class="tu-l">MSY 比值中位數（CMSY／ISSF）</span></div>
+      <div class="tu-kpi"><span class="tu-v"><span class="dash-skeleton" data-source="kpis" data-field="b_agree">—</span> / <span class="dash-skeleton" data-source="kpis" data-field="b_compared">—</span></span><span class="tu-l">資源量判定與 ISSF 一致的系群</span></div>
+    </div>
+
+    <div class="tu-card" id="ov-catch-card">
+      <h2>各組織逐年漁獲</h2>
+      <p class="tu-note">所有物種、國家、漁法合計，1950–2024。2025 年只有 IATTC、IOTC 有資料，不畫入。</p>
+      <div class="tu-legend" id="ov-legend" data-source="rfmo_year"></div>
+      <div class="tu-chart tu-h300" id="ov-catch" data-source="rfmo_year"></div>
+    </div>
+
+    <div class="tu-split">
+      <div class="tu-card" id="ov-kobe-card">
+        <h2>最終年 Kobe 總覽</h2>
+        <p class="tu-note">每點一個系群，顏色代表組織。點一下看該系群詳細結果。</p>
+        <div class="tu-legend" id="ov-kobe-legend" data-source="cmsy_results"></div>
+        <div class="tu-chart tu-h420" id="ov-kobe" data-source="cmsy_results"></div>
+      </div>
+      <div class="tu-card" id="ov-zone-card">
+        <h2>各組織的 Kobe 分區</h2>
+        <p class="tu-note">CMSY++ 最終年中位數落在哪一區的系群數。</p>
+        <div class="tu-legend" id="ov-zone-legend"></div>
+        <div class="tu-bars" id="ov-zones" data-source="cmsy_results"></div>
+        <p class="tu-warnline">紅區多不等於資源普遍過漁。與 ISSF 對照顯示，CMSY 的 Schaefer 模型把 Bmsy 定在 k 的一半，而鮪類正式評估的 SSBmsy 多在未開發量的 20–35%，因此同樣的資源剩餘比例，CMSY 給出較低的 B/Bmsy。見「與 ISSF 比較」。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 漁獲查詢 ============ -->
+  <section class="tu-page" id="catch" hidden>
+    <div class="tu-card">
+      <div class="tu-filters" id="ct-filters">
+        <label class="tu-field">組織（洋區）<select id="ct-rf" data-source="catches"></select></label>
+        <label class="tu-field">物種類別<select id="ct-grp" data-source="species"></select></label>
+        <label class="tu-field">物種<select id="ct-sp" data-source="species catches"></select></label>
+        <label class="tu-field">國家／船旗<select id="ct-cc" data-source="countries catches"></select></label>
+        <label class="tu-field">漁法<select id="ct-gear" data-source="gears catches"></select></label>
+        <label class="tu-field">分組依據<select id="ct-dim">
+          <option value="cc">國家</option><option value="gear">漁法</option><option value="sp">物種</option><option value="rfmo">組織</option>
+        </select></label>
+        <button class="tu-btn" id="ct-reset" type="button">清除篩選</button>
+      </div>
+      <p class="tu-note" id="ct-summary" data-source="catches"></p>
+    </div>
+    <div class="tu-card" id="ct-trend-card">
+      <h2 id="ct-trend-title">逐年漁獲</h2>
+      <p class="tu-note">前 8 名分開顯示，其餘併為「其他」。游標移到圖上看各年數字。</p>
+      <div class="tu-legend" id="ct-legend" data-source="catches species countries gears"></div>
+      <div class="tu-chart tu-h300" id="ct-trend" data-source="catches species countries gears"></div>
+    </div>
+    <div class="tu-card" id="ct-rank-card">
+      <div class="tu-filters">
+        <h2 id="ct-rank-title" style="flex:1 1 16rem">年度排行</h2>
+        <label class="tu-field">年度<select id="ct-yr" data-source="catches"></select></label>
+        <label class="tu-field">顯示<select id="ct-top"><option value="20">前 20 名</option><option value="50">前 50 名</option><option value="999">全部</option></select></label>
+      </div>
+      <p class="tu-note">點國家、漁法或物種，可直接設為篩選條件。</p>
+      <div class="tu-bars" id="ct-rank" data-source="catches species countries gears"></div>
+    </div>
+  </section>
+
+  <!-- ============ 配額 ============ -->
+  <section class="tu-page" id="quota" hidden>
+    <div class="tu-card">
+      <p class="tu-lede" style="color:var(--color-fg)">各組織以養護管理措施訂定的國別配額或漁獲上限，數字取自各措施原文附表；實際漁獲取自本頁的整併漁獲資料，同一國、同一系群、同一年加總。兩者計算範圍不一定相同（轉讓、結轉、船隊歸屬、漁獲類型），使用率僅供參考。</p>
+      <div class="tu-filters">
+        <label class="tu-field">系群<select id="qt-stock" data-source="quota"></select></label>
+        <label class="tu-field">國家<select id="qt-cc" data-source="quota"></select></label>
+      </div>
+    </div>
+    <div class="tu-card" id="qt-trend-card">
+      <h2 id="qt-trend-title">配額與漁獲</h2>
+      <p class="tu-note">選國家看該國；不選則看 TAC 與總漁獲（無 TAC 的系群為各國上限合計）。</p>
+      <div class="tu-chart tu-h260" id="qt-trend" data-source="quota"></div>
+    </div>
+    <div class="tu-card" id="qt-bars-card">
+      <div class="tu-filters">
+        <h2 id="qt-bars-title" style="flex:1 1 16rem">各國配額與漁獲</h2>
+        <label class="tu-field">年度<select id="qt-yr" data-source="quota"></select></label>
+      </div>
+      <p class="tu-note" id="qt-bars-note" data-source="quota"></p>
+      <div class="tu-bars" id="qt-bars" data-source="quota"></div>
+    </div>
+    <div class="tu-card" id="qt-table-card">
+      <h2>配額明細與出處</h2>
+      <p class="tu-note">「依據」欄：原文＝直接取自措施附表；推定＝由相鄰年度或其他官方文件推得；試算＝依分配比例計算、尚未正式通過。點出處開啟原始文件。</p>
+      <div class="tu-tablewrap">
+        <table class="tu-table" id="qt-table" data-source="quota" data-row-key="key">
+          <thead><tr>
+            <th data-field="year" class="tu-num">年度</th><th data-field="party">國家／締約方</th><th data-field="limit_t" class="tu-num">配額（t）</th>
+            <th data-field="ltype">類型</th><th data-field="catch_t" class="tu-num">漁獲（t）</th><th data-field="use_ratio" class="tu-num">使用率</th>
+            <th data-field="basis">依據</th><th data-field="note">備註</th><th data-field="source">出處</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CMSY 結果 ============ -->
+  <section class="tu-page" id="cmsy" hidden>
+    <div class="tu-card">
+      <div class="tu-filters">
+        <label class="tu-field">組織<select id="cm-rf" data-source="cmsy_results"></select></label>
+        <label class="tu-field">物種類別<select id="cm-grp" data-source="cmsy_results"></select></label>
+        <label class="tu-field">Kobe 分區<select id="cm-zone"><option value="">全部</option><option value="紅">紅</option><option value="黃">黃</option><option value="橙">橙</option><option value="綠">綠</option></select></label>
+        <label class="tu-field">搜尋<input id="cm-q" type="search" placeholder="物種、系群或代碼"></label>
+        <span class="tu-badge" id="cm-count" data-source="cmsy_results"></span>
+      </div>
+    </div>
+    <div class="tu-card" id="cm-kobe-card">
+      <h2>最終年 Kobe 圖</h2>
+      <p class="tu-note">中位數位置；顏色代表 Kobe 分區，形狀代表組織（圓 ICCAT、方 IOTC、三角 IATTC、菱形 WCPFC、星 CCSBT、十字 全太平洋）。點一下開啟系群詳細。</p>
+      <div class="tu-chart tu-h420" id="cm-kobe" data-source="cmsy_results"></div>
+    </div>
+    <div class="tu-card" id="cm-table-card">
+      <h2>系群結果表</h2>
+      <p class="tu-note">MSY 單位公噸；B/Bmsy、F/Fmsy 為最終年中位數。點表頭排序，點一列開啟詳細。</p>
+      <div class="tu-tablewrap">
+        <table class="tu-table" id="cm-table" data-source="cmsy_results" data-row-key="unit">
+          <thead><tr>
+            <th data-field="unit"><button type="button" data-k="unit">分析單位</button></th>
+            <th data-field="name"><button type="button" data-k="name">物種</button></th>
+            <th data-field="ocean"><button type="button" data-k="ocean">洋區</button></th>
+            <th data-field="stock"><button type="button" data-k="stock">系群</button></th>
+            <th data-field="end" class="tu-num"><button type="button" data-k="end">最終年</button></th>
+            <th data-field="msy" class="tu-num"><button type="button" data-k="msy">MSY</button></th>
+            <th data-field="b" class="tu-num"><button type="button" data-k="b">B/Bmsy</button></th>
+            <th data-field="f" class="tu-num"><button type="button" data-k="f">F/Fmsy</button></th>
+            <th data-field="zone"><button type="button" data-k="zone">分區</button></th>
+            <th data-field="resilience"><button type="button" data-k="resilience">Resilience</button></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 系群詳細 ============ -->
+  <section class="tu-page" id="detail" hidden>
+    <div class="tu-card">
+      <div class="tu-filters">
+        <label class="tu-field">系群<select id="dt-unit" data-source="cmsy_results"></select></label>
+      </div>
+      <h2 id="dt-title" data-source="cmsy_results">—</h2>
+      <p class="tu-note" id="dt-sub"></p>
+      <div class="tu-kpis" id="dt-kpis">
+        <div class="tu-kpi"><span class="tu-v" id="dt-msy" data-source="cmsy_results" data-field="msy">—</span><span class="tu-l" id="dt-msy-l">MSY（公噸）</span></div>
+        <div class="tu-kpi"><span class="tu-v" id="dt-b" data-source="cmsy_results" data-field="b">—</span><span class="tu-l" id="dt-b-l">最終年 B/Bmsy</span></div>
+        <div class="tu-kpi"><span class="tu-v" id="dt-f" data-source="cmsy_results" data-field="f">—</span><span class="tu-l" id="dt-f-l">最終年 F/Fmsy</span></div>
+        <div class="tu-kpi"><span class="tu-v" id="dt-zone" data-source="cmsy_results" data-field="zone">—</span><span class="tu-l" id="dt-zone-l">Kobe 分區</span></div>
+        <div class="tu-kpi"><span class="tu-v" id="dt-r" data-source="cmsy_results" data-field="r">—</span><span class="tu-l" id="dt-r-l">r（內在成長率）</span></div>
+        <div class="tu-kpi"><span class="tu-v" id="dt-k" data-source="cmsy_results" data-field="k">—</span><span class="tu-l" id="dt-k-l">k（承載量，公噸）</span></div>
+      </div>
+    </div>
+    <div class="tu-grid">
+      <div class="tu-card" id="dt-catch-card">
+        <h2>漁獲與 MSY</h2>
+        <p class="tu-note">CMSY++ 使用的逐年漁獲；虛線為 MSY 中位數。</p>
+        <div class="tu-chart tu-h260" id="dt-catch" data-source="cmsy_ts cmsy_results"></div>
+      </div>
+      <div class="tu-card" id="dt-kobe-card">
+        <h2>Kobe 軌跡</h2>
+        <p class="tu-note">□ 起始年、△ 最終年；灰點為最終年後驗分布抽樣 300 點。</p>
+        <div class="tu-chart tu-h300" id="dt-kobe" data-source="cmsy_ts kobe_cloud"></div>
+      </div>
+      <div class="tu-card" id="dt-b-card">
+        <h2>相對生物量 B/Bmsy</h2>
+        <p class="tu-note">中位數與 95% 區間；1 為 Bmsy。</p>
+        <div class="tu-chart tu-h260" id="dt-bchart" data-source="cmsy_ts"></div>
+      </div>
+      <div class="tu-card" id="dt-f-card">
+        <h2>相對漁獲死亡率 F/Fmsy</h2>
+        <p class="tu-note">中位數與 95% 區間；1 為 Fmsy。</p>
+        <div class="tu-chart tu-h260" id="dt-fchart" data-source="cmsy_ts"></div>
+      </div>
+    </div>
+    <div class="tu-card" id="dt-cc-card">
+      <h2 id="dt-cc-title">國家別漁獲</h2>
+      <p class="tu-note" id="dt-cc-note">該組織此物種各國逐年漁獲，前 8 名分開顯示。</p>
+      <div class="tu-legend" id="dt-cc-legend" data-source="catches countries"></div>
+      <div class="tu-chart tu-h300" id="dt-cc" data-source="catches countries"></div>
+    </div>
+    <div class="tu-card" id="dt-issf-card">
+      <h2>與 ISSF 正式評估對照</h2>
+      <div id="dt-issf"></div>
+    </div>
+  </section>
+
+  <!-- ============ ISSF 比較 ============ -->
+  <section class="tu-page" id="issf" hidden>
+    <div class="tu-card">
+      <p class="tu-lede" style="color:var(--color-fg)">ISSF 2026-01 報告彙整 23 個主要商業鮪類系群的 RFMO 正式評估。CMSY++ 的值取與 ISSF 相同參考年度的平均。
+      MSY 兩者相近；B/Bmsy 判定一致 <span data-source="kpis" data-field="b_agree">—</span> 個、F/Fmsy 一致 <span data-source="kpis" data-field="f_agree">—</span> 個（共 <span data-source="kpis" data-field="b_compared">—</span> 個可比）。改比資源剩餘比例（B/k 對 SSB/SSB0）時，兩者接近得多。</p>
+    </div>
+    <div class="tu-grid">
+      <div class="tu-card" id="is-b-card"><h2>B/Bmsy</h2><p class="tu-note">橫軸 ISSF（SSB/SSBmsy），縱軸 CMSY++；虛線為 1:1。</p><div class="tu-chart tu-h300" id="is-b" data-source="issf_compare"></div></div>
+      <div class="tu-card" id="is-d-card"><h2>資源剩餘比例</h2><p class="tu-note">橫軸 ISSF SSB/SSB0，縱軸 CMSY++ B/k；不受 Bmsy 定義影響。</p><div class="tu-chart tu-h300" id="is-d" data-source="issf_compare"></div></div>
+      <div class="tu-card" id="is-f-card"><h2>F/Fmsy</h2><p class="tu-note">橫軸 ISSF，縱軸 CMSY++。</p><div class="tu-chart tu-h300" id="is-f" data-source="issf_compare"></div></div>
+      <div class="tu-card" id="is-m-card"><h2>MSY（千公噸）</h2><p class="tu-note">對數尺度；北、南太平洋長鰭鮪無法對應，不畫。</p><div class="tu-chart tu-h300" id="is-m" data-source="issf_compare"></div></div>
+    </div>
+    <div class="tu-card" id="is-table-card">
+      <h2>逐系群對照表</h2>
+      <p class="tu-note">評等與分區顏色：綠 健康、黃 資源偏低或接近限制、橙 漁獲壓力過高、紅 兩者皆不佳。點有對應的列開啟系群詳細。</p>
+      <div class="tu-tablewrap">
+        <table class="tu-table" id="is-table" data-source="issf_compare" data-row-key="issf_stock">
+          <thead><tr>
+            <th data-field="issf_stock">ISSF 系群</th>
+            <th data-field="name">名稱</th>
+            <th data-field="issf_ssb_rating">ISSF 資源量</th>
+            <th data-field="issf_f_rating">ISSF 漁獲死亡</th>
+            <th data-field="cmsy_zone_same">CMSY 分區</th>
+            <th data-field="issf_b" class="tu-num">ISSF SSB/SSBmsy</th>
+            <th data-field="cmsy_b_same" class="tu-num">CMSY B/Bmsy</th>
+            <th data-field="issf_ssb0" class="tu-num">ISSF SSB/SSB0</th>
+            <th data-field="cmsy_bk_same" class="tu-num">CMSY B/k</th>
+            <th data-field="issf_f" class="tu-num">ISSF F/Fmsy</th>
+            <th data-field="cmsy_f_same" class="tu-num">CMSY F/Fmsy</th>
+            <th data-field="issf_msy_kt" class="tu-num">ISSF MSY</th>
+            <th data-field="cmsy_msy_kt" class="tu-num">CMSY MSY</th>
+            <th data-field="b_verdict">資源量判定</th>
+            <th data-field="issf_note">備註</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 方法 ============ -->
+  <section class="tu-page" id="method" hidden>
+    <div class="tu-card tu-prose">
+      <h2>資料來源</h2>
+      <ul>
+        <li><b>IATTC</b>：CatchByFlagGear1918-2025，東太平洋估計留存漁獲（年×船旗×漁具×物種）。</li>
+        <li><b>ICCAT</b>：Task 1 名目漁獲 t1nc-20260129，大西洋及地中海，含卸魚、死亡丟棄、入畜養場等漁獲類型。</li>
+        <li><b>IOTC</b>：IOTC-DATASETS-2026-08-13 留存漁獲，印度洋，1950–2025。</li>
+        <li><b>WCPFC</b>：Tuna Fishery Yearbook 2025 船隊別表（Table 1–87），中西太平洋，1970–2024，由 PDF 解析。</li>
+        <li><b>CCSBT</b>：全球南方黑鮪國別曆年漁獲，1952–2024（國別表不分漁法）。</li>
+        <li><b>配額</b>：CCSBT 配額分配網頁與 EC 文件；ICCAT 建議案 14-04、17-07、18-02、20-07、21-08、22-08、25-04（東大西洋黑鮪）、22-10、25-05（西大西洋黑鮪）、23-05、22-06（長鰭鮪）、24-01（大目鮪）、23-04、24-10、22-04、24-11（劍旗魚）；WCPFC CMM 2014-01、2016-01、2018-01、2020-01、2023-01、2025-02（大目鮪）、2023-02、2024-01（太平洋黑鮪）；IATTC C-13-01（經美國太平洋漁業管理委員會文件轉載）與 C-24-01（經美國聯邦公報轉載）；IOTC 函文 2025-44。IATTC 官網不開放程式讀取，其現行國別上限未能完整取得。</li>
+        <li><b>ISSF</b>：Status of the World Fisheries for Tuna，2026 年 1 月（ISSF Technical Report 2026-01）。</li>
+      </ul>
+      <h2>代碼統一</h2>
+      <p>國家統一為 ISO 3 碼（臺灣各來源寫法統一為 TWN），漁法歸為 14 類，物種用 FAO 3 碼並附臺灣常用中文名。漁獲查詢只收重量大於 0 的紀錄。</p>
+      <h2>CMSY++ 設定</h2>
+      <ul>
+        <li>官方 CMSY++16.R，只用漁獲（無 CPUE），B/k 先驗由內建神經網路給定，JAGS 兩條鏈。</li>
+        <li>每個系群把各國、各漁法、各漁獲類型加總；取 1950 年後連續有漁獲至最終年的區段，至少 25 年且總漁獲 2 萬公噸以上。</li>
+        <li>系群：ICCAT 依其評估單位（如長鰭鮪北／南／地中海、黑鮪東／西）；IOTC 各物種為印度洋單一系群；IATTC、WCPFC 依管轄區；藍槍魚另跑全太平洋；南方黑鮪用 CCSBT 全球資料。</li>
+        <li>Resilience 依 FishBase 分級初設：正鰹、花鰹類、鬼頭刀、棘鰆為 High；多數鮪類、旗魚、鰆類為 Medium；黑鮪、南方黑鮪、大青鯊、平滑白眼鮫為 Low；鯖鮫、鼠鯊為 Very low。</li>
+      </ul>
+      <h2>判讀限制</h2>
+      <ul>
+        <li>只用漁獲時，B/Bmsy 主要由先驗決定；因管理措施（禁捕、配額）造成的漁獲下降，也會被判為資源偏低，例如鼠鯊。</li>
+        <li>Schaefer 模型的 Bmsy 固定為 k 的 50%，鮪類正式評估的 SSBmsy 多在未開發量的 20–35%，所以 CMSY 的 B/Bmsy 會系統性低於正式評估。比較資源剩餘比例時，看 B/k 較合適。</li>
+        <li>WCPFC 年報只列 1970 年以後，起始生物量因此被估得偏低；鯊魚序列早期多未通報，上升多反映通報改善。</li>
+        <li>南、北太平洋長鰭鮪、劍旗魚、紅肉旗魚、大青鯊在資料中無法拆分；太平洋黑鮪只有東太平洋部分，未分析。</li>
+        <li>IATTC、IOTC 的 2025 年為初步資料。ISSF 各系群參考年度從 2018 到 2024 不等。</li>
+        <li>本頁結果是只用漁獲的研究性分析，不能取代 RFMO 的正式資源評估。</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script src="core.js"></script>
+<script src="overview.js"></script>
+<script src="catchpage.js"></script>
+<script src="cmsypage.js"></script>
+<script src="detail.js"></script>
+<script src="issfpage.js"></script>
+<script src="quotapage.js"></script>
+<script>
+  const T = window.TU;
+  document.querySelectorAll('.tu-tab').forEach((b) => b.addEventListener('click', () => T.showTab(b.dataset.tab)));
+  const h = location.hash.slice(1);
+  T.showTab(T.TABS.includes(h) ? h : (dash.params().tab || 'overview'), false);
+</script>
+
+<footer class="site-foot">
+  資料：IATTC、ICCAT、IOTC、WCPFC、CCSBT 公開漁獲資料與管理措施；ISSF Technical Report 2026-01。CMSY++ 為只用漁獲的研究性分析，不能取代 RFMO 正式資源評估。
+  原始資料檔在 <a href="https://github.com/juliah1121/Global_tuna_fisheries/tree/main/data">data/</a>。
+</footer>
+</div>
+</body>
+</html>

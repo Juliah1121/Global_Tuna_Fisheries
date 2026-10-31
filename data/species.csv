@@ -1,0 +1,197 @@
+sp,name,english,sci,group
+ALB,長鰭鮪,Albacore,Thunnus alalunga,主要鮪類
+BET,大目鮪,Bigeye tuna,Thunnus obesus,主要鮪類
+YFT,黃鰭鮪,Yellowfin tuna,Thunnus albacares,主要鮪類
+SKJ,正鰹,Skipjack tuna,Katsuwonus pelamis,主要鮪類
+BFT,大西洋黑鮪,Atlantic bluefin tuna,Thunnus thynnus,主要鮪類
+PBF,太平洋黑鮪,Pacific bluefin tuna,Thunnus orientalis,主要鮪類
+SBF,南方黑鮪,Southern bluefin tuna,Thunnus maccoyii,主要鮪類
+TUN,鮪類（未分類）,Tunas nei,Thunnini,主要鮪類
+TUS,鮪屬（未分類）,True tunas nei,Thunnus spp,主要鮪類
+AG35,黃鰭鮪及正鰹（混合）,Yellowfin tuna and skipjack tuna,Thunnus albacares; Katsuwonus pelamis,主要鮪類
+AG10,正鰹及巴鰹（混合）,Skipjack tuna and kawakawa,Katsuwonus pelamis; Euthynnus affinis,小型鮪類及鰆類
+BLF,黑鰭鮪,Blackfin tuna,Thunnus atlanticus,小型鮪類及鰆類
+LOT,長腰鮪,Longtail tuna,Thunnus tonggol,小型鮪類及鰆類
+BLT,圓花鰹,Bullet tuna,Auxis rochei,小型鮪類及鰆類
+FRI,扁花鰹,Frigate tuna,Auxis thazard,小型鮪類及鰆類
+FRZ,花鰹屬（扁花鰹及圓花鰹）,Frigate and bullet tunas,"Auxis thazard, A. rochei",小型鮪類及鰆類
+KAW,巴鰹,Kawakawa,Euthynnus affinis,小型鮪類及鰆類
+LTA,小巴鰹（大西洋）,Little tunny,Euthynnus alletteratus,小型鮪類及鰆類
+BKJ,黑巴鰹,Black skipjack,Euthynnus lineatus,小型鮪類及鰆類
+BON,大西洋齒鰆（狐鰹）,Atlantic bonito,Sarda sarda,小型鮪類及鰆類
+BZX,齒鰆屬（狐鰹類）,Bonitos nei,Sarda spp,小型鮪類及鰆類
+BOP,單色齒鰆,Plain bonito,Orcynopsis unicolor,小型鮪類及鰆類
+SLT,細鰹,Slender tuna,Allothunnus fallai,小型鮪類及鰆類
+BUK,蝶鮪,Butterfly kingfish,Gasterochisma melampus,小型鮪類及鰆類
+COM,康氏馬加鰆,Narrow-barred Spanish mackerel,Scomberomorus commerson,小型鮪類及鰆類
+GUT,斑點馬加鰆,Indo-Pacific king mackerel,Scomberomorus guttatus,小型鮪類及鰆類
+KGM,王馬加鰆,King mackerel,Scomberomorus cavalla,小型鮪類及鰆類
+KGX,馬加鰆屬,Seerfishes nei,Scomberomorus spp,小型鮪類及鰆類
+BRS,巴西馬加鰆,Serra Spanish mackerel,Scomberomorus brasiliensis,小型鮪類及鰆類
+CER,帶紋馬加鰆,Cero,Scomberomorus regalis,小型鮪類及鰆類
+MAW,西非馬加鰆,West African Spanish mackerel,Scomberomorus tritor,小型鮪類及鰆類
+SSM,大西洋馬加鰆,Atlantic Spanish mackerel,Scomberomorus maculatus,小型鮪類及鰆類
+NPH,日本馬加鰆,Japanese Spanish mackerel,Scomberomorus niphonius,小型鮪類及鰆類
+WAH,棘鰆,Wahoo,Acanthocybium solandri,小型鮪類及鰆類
+SWO,劍旗魚,Swordfish,Xiphias gladius,旗魚類
+BUM,藍槍魚（黑皮旗魚）,Blue marlin,Makaira nigricans,旗魚類
+BLM,立翅旗魚（白皮旗魚）,Black marlin,Istiompax indica,旗魚類
+MLS,紅肉旗魚（紅肉丁挽）,Striped marlin,Kajikia audax,旗魚類
+WHM,大西洋白四鰭旗魚,Atlantic white marlin,Kajikia albida,旗魚類
+SFA,雨傘旗魚,Sailfish,Istiophorus platypterus,旗魚類
+SSP,短吻四鰭旗魚,Shortbill spearfish,Tetrapturus angustirostris,旗魚類
+SPF,長吻四鰭旗魚,Longbill spearfish,Tetrapturus pfluegeri,旗魚類
+MSP,地中海四鰭旗魚,Mediterranean spearfish,Tetrapturus belone,旗魚類
+RSP,圓鱗四鰭旗魚,Roundscale spearfish,Tetrapturus georgii,旗魚類
+BIL,旗魚類（未分類）,"Marlins, sailfishes, etc. nei",Istiophoridae,旗魚類
+BXQ,槍魚屬（未分類）,Marlins nei,Makaira spp,旗魚類
+BSH,鋸峰齒鮫（大青鯊）,Blue shark,Prionace glauca,鯊魚類
+FAL,平滑白眼鮫（黑鯊）,Silky shark,Carcharhinus falciformis,鯊魚類
+OCS,長鰭真鯊（汙斑白眼鮫）,Oceanic whitetip shark,Carcharhinus longimanus,鯊魚類
+SMA,尖吻鯖鮫（灰鯖鮫）,Shortfin mako,Isurus oxyrinchus,鯊魚類
+LMA,長臂灰鯖鮫,Longfin mako,Isurus paucus,鯊魚類
+MAK,鯖鮫屬（灰鯖鮫類）,Mako sharks,Isurus spp,鯊魚類
+POR,鼠鯊,Porbeagle,Lamna nasus,鯊魚類
+MSK,鼠鯊科,"Mackerel sharks, porbeagles nei",Lamnidae,鯊魚類
+THR,狐鮫屬,Thresher sharks nei,Alopias spp,鯊魚類
+ALV,狐鮫,Thresher,Alopias vulpinus,鯊魚類
+BTH,大眼狐鮫,Bigeye thresher,Alopias superciliosus,鯊魚類
+PTH,淺海狐鮫,Pelagic thresher,Alopias pelagicus,鯊魚類
+SPY,雙髻鯊科,"Hammerhead sharks, etc. nei",Sphyrnidae,鯊魚類
+SPN,雙髻鯊屬,Hammerhead sharks nei,Sphyrna spp,鯊魚類
+SPL,紅肉丫髻鮫,Scalloped hammerhead,Sphyrna lewini,鯊魚類
+SPZ,丫髻鮫（錘頭雙髻鯊）,Smooth hammerhead,Sphyrna zygaena,鯊魚類
+SPK,八鰭丫髻鮫（無溝雙髻鯊）,Great hammerhead,Sphyrna mokarran,鯊魚類
+SPJ,窄頭雙髻鯊,Bonnethead,Sphyrna tiburo,鯊魚類
+SKH,鯊類（未分類）,Various sharks nei,Selachimorpha (Pleurotremata),鯊魚類
+RSK,真鯊科（白眼鮫科）,Requiem sharks nei,Carcharhinidae,鯊魚類
+WSH,噬人鮫（大白鯊）,Great white shark,Carcharodon carcharias,鯊魚類
+TIG,鼬鮫（虎鯊）,Tiger shark,Galeocerdo cuvier,鯊魚類
+BSK,象鮫（姥鯊）,Basking shark,Cetorhinus maximus,鯊魚類
+RHN,鯨鮫（鯨鯊）,Whale shark,Rhincodon typus,鯊魚類
+PSK,蒲原氏擬錐齒鯊（鱷鯊）,Crocodile shark,Pseudocarcharias kamoharai,鯊魚類
+CCA,大鼻真鯊,Bignose shark,Carcharhinus altimus,鯊魚類
+CCB,旋轉真鯊,Spinner shark,Carcharhinus brevipinna,鯊魚類
+CCE,公牛真鯊,Bull shark,Carcharhinus leucas,鯊魚類
+CCG,加拉巴哥真鯊,Galapagos shark,Carcharhinus galapagensis,鯊魚類
+CCL,黑邊鰭真鯊,Blacktip shark,Carcharhinus limbatus,鯊魚類
+CCN,黑鼻真鯊,Blacknose shark,Carcharhinus acronotus,鯊魚類
+CCO,細齒真鯊,Finetooth shark,Carcharhinus isodon,鯊魚類
+CCP,鉛灰真鯊（高鰭白眼鮫）,Sandbar shark,Carcharhinus plumbeus,鯊魚類
+CCR,小尾真鯊,Smalltail shark,Carcharhinus porosus,鯊魚類
+CCS,夜真鯊,Night shark,Carcharhinus signatus,鯊魚類
+CCT,沙虎鯊,Sand tiger shark,Carcharias taurus,鯊魚類
+DUS,暗體真鯊,Dusky shark,Carcharhinus obscurus,鯊魚類
+BRO,短尾真鯊（銅鯊）,Copper shark,Carcharhinus brachyurus,鯊魚類
+ALS,白邊鰭真鯊,Silvertip shark,Carcharhinus albimarginatus,鯊魚類
+BLR,烏翅真鯊,Blacktip reef shark,Carcharhinus melanopterus,鯊魚類
+NGB,檸檬鯊,Lemon shark,Negaprion brevirostris,鯊魚類
+GNC,鉸口鯊,Nurse shark,Ginglymostoma cirratum,鯊魚類
+RHA,尖頭斜齒鯊,Milk shark,Rhizoprionodon acutus,鯊魚類
+RHT,大西洋斜齒鯊,Atlantic sharpnose shark,Rhizoprionodon terraenovae,鯊魚類
+GAG,翅鯊,Tope shark,Galeorhinus galeus,鯊魚類
+SDS,星斑星鯊,Starry smooth-hound,Mustelus asterias,鯊魚類
+SDV,星鯊屬,Smooth-hounds nei,Mustelus spp,鯊魚類
+SMD,灰星鯊,Smooth-hound,Mustelus mustelus,鯊魚類
+CTK,褐星鯊,Brown smooth-hound,Mustelus henlei,鯊魚類
+TRK,皺唇鯊科,Houndsharks nei,Triakidae,鯊魚類
+LES,豹紋皺唇鯊,Leopard shark,Triakis semifasciata,鯊魚類
+SBL,灰六鰓鯊,Bluntnose sixgill shark,Hexanchus griseus,鯊魚類
+HXT,尖吻七鰓鯊,Sharpnose sevengill shark,Heptranchias perlo,鯊魚類
+NTC,扁頭哈那鯊,Broadnose sevengill shark,Notorynchus cepedianus,鯊魚類
+DGS,白斑角鯊,Picked dogfish,Squalus acanthias,鯊魚類
+DGZ,角鯊屬,Dogfishes nei,Squalus spp,鯊魚類
+DGX,角鯊科,Dogfish sharks nei,Squalidae,鯊魚類
+DGH,角鯊科及貓鯊科（未分類）,Dogfish sharks and catsharks nei,Squalidae / Scyliorhinidae,鯊魚類
+QUB,長吻角鯊,Longnose spurdog,Squalus blainville,鯊魚類
+DOP,短吻角鯊,Shortnose spurdog,Squalus megalops,鯊魚類
+SHX,角鯊目,Squaliformes nei,Squaliformes,鯊魚類
+GUP,顆粒刺鯊,Gulper shark,Centrophorus granulosus,鯊魚類
+GUQ,葉鱗刺鯊,Leafscale gulper shark,Centrophorus squamosus,鯊魚類
+CPL,低鰭刺鯊,Lowfin gulper shark,Centrophorus lusitanicus,鯊魚類
+CWO,刺鯊屬,Gulper sharks nei,Centrophorus spp,鯊魚類
+CYO,葡萄牙荊鯊,Portuguese dogfish,Centroscymnus coelolepis,鯊魚類
+CYP,長吻天鵝絨鯊,Longnose velvet dogfish,Centroselachus crepidater,鯊魚類
+DCA,喙吻田氏鯊,Birdbeak dogfish,Deania calceus,鯊魚類
+ETR,大燈籠鯊,Great lanternshark,Etmopterus princeps,鯊魚類
+ETX,黑腹燈籠鯊,Velvet belly,Etmopterus spinax,鯊魚類
+SHL,燈籠鯊屬,Lanternsharks nei,Etmopterus spp,鯊魚類
+CFB,黑棘鯊,Black dogfish,Centroscyllium fabricii,鯊魚類
+SCK,鎧鯊,Kitefin shark,Dalatias licha,鯊魚類
+GSK,格陵蘭睡鯊,Greenland shark,Somniosus microcephalus,鯊魚類
+SOR,小睡鯊,Little sleeper shark,Somniosus rostratus,鯊魚類
+SYO,暗色睡鯊,Velvet dogfish,Scymnodon obscurus,鯊魚類
+SYR,刀齒睡鯊,Knifetooth dogfish,Scymnodon ringens,鯊魚類
+OXY,尖背角鯊,Angular roughshark,Oxynotus centrina,鯊魚類
+OXN,帆鰭尖背角鯊,Sailfin roughshark,Oxynotus paradoxus,鯊魚類
+SHB,笠鱗鯊,Bramble shark,Echinorhinus brucus,鯊魚類
+QUL,寬尾小角鯊,Spined pygmy shark,Squaliolus laticaudus,鯊魚類
+API,光尾鯊屬,Apristurus catsharks nei,Apristurus spp,鯊魚類
+GAU,蜥鮫屬,Sawtail catsharks nei,Galeus spp,鯊魚類
+SHO,黑口蜥鮫,Blackmouth catshark,Galeus melastomus,鯊魚類
+SCL,貓鯊屬,Catsharks nei,Scyliorhinus spp,鯊魚類
+SYC,小點貓鯊,Small-spotted catshark,Scyliorhinus canicula,鯊魚類
+SYT,大點貓鯊,Nursehound,Scyliorhinus stellaris,鯊魚類
+SYX,貓鯊科,Catsharks nei,Scyliorhinidae,鯊魚類
+PTM,擬皺唇鯊,False catshark,Pseudotriakis microdon,鯊魚類
+LMO,歐氏尖吻鮫（哥布林鯊）,Goblin shark,Mitsukurina owstoni,鯊魚類
+AGN,扁鯊,Angelshark,Squatina squatina,鯊魚類
+ASK,扁鯊科,Angelsharks nei,Squatinidae,鯊魚類
+PLS,紫魟,Pelagic stingray,Pteroplatytrygon violacea,魟鰩類
+STT,魟科,Stingrays nei,Dasyatidae,魟鰩類
+MAN,蝠鱝科,"Mantas, devil rays nei",Mobulidae,魟鰩類
+RMB,雙吻前口蝠鱝（鬼蝠魟）,Giant manta,Mobula birostris,魟鰩類
+RMA,阿氏前口蝠鱝,Reef manta ray,Mobula alfredi,魟鰩類
+RMM,地中海蝠鱝,Devil fish,Mobula mobular,魟鰩類
+RMO,褐背蝠鱝,Smoothtail mobula,Mobula thurstoni,魟鰩類
+RMT,智利蝠鱝,Chilean devil ray,Mobula tarapacana,魟鰩類
+RMV,蝠鱝屬,Mobula nei,Mobula spp,魟鰩類
+SRX,鰩魟類（未分類）,"Rays, stingrays, mantas nei",Rajiformes,魟鰩類
+RAJ,鰩科,Rays and skates nei,Rajidae,魟鰩類
+EAG,燕魟科（鷂鱝科）,Eagle rays nei,Myliobatidae,魟鰩類
+DOL,鬼頭刀,Common dolphinfish,Coryphaena hippurus,其他魚類
+CFW,棘鰭鬼頭刀,Pompano dolphinfish,Coryphaena equiselis,其他魚類
+DOX,鬼頭刀屬,Dolphinfishes nei,Coryphaena spp,其他魚類
+RRU,雙帶鰺,Rainbow runner,Elagatis bipinnulata,其他魚類
+AMB,紅甘鰺,Greater amberjack,Seriola dumerili,其他魚類
+YTC,黃條鰤,Yellowtail amberjack,Seriola lalandi,其他魚類
+YTL,長鰭鰤,Longfin yellowtail,Seriola rivoliana,其他魚類
+CVJ,馬鰺,Crevalle jack,Caranx hippos,其他魚類
+RUB,藍鰺,Blue runner,Caranx crysos,其他魚類
+USE,白舌尾甲鰺,Cottonmouth jack,Uraspis secunda,其他魚類
+LEE,拖鰺,Leerfish,Lichia amia,其他魚類
+NAU,舟鰤,Pilotfish,Naucrates ductor,其他魚類
+CGX,鰺科,Carangids nei,Carangidae,其他魚類
+VAD,瓦迪鰺,Vadigo,Campogramma glaycos,其他魚類
+HMM,地中海竹筴魚,Mediterranean horse mackerel,Trachurus mediterraneus,其他魚類
+BAZ,金梭魚科（魣科）,Barracudas nei,Sphyraenidae,其他魚類
+GBA,大魣,Great barracuda,Sphyraena barracuda,其他魚類
+OIL,粗鱗油魚（薔薇帶鰆）,Oilfish,Ruvettus pretiosus,其他魚類
+LEC,細鱗油魚（異鱗蛇鯖）,Escolar,Lepidocybium flavobrunneum,其他魚類
+GES,蛇鯖,Snake mackerel,Gempylus serpens,其他魚類
+BSF,黑等鰭叉尾帶魚,Black scabbardfish,Aphanopus carbo,其他魚類
+SFS,隆頭帶魚,Silver scabbardfish,Lepidopus caudatus,其他魚類
+POA,大西洋烏魴,Atlantic pomfret,Brama brama,其他魚類
+TAL,長鰭烏魴,Bigscale pomfret,Taractichthys longipinnis,其他魚類
+TST,斯氏長鰭烏魴,Sickle pomfret,Taractichthys steindachneri,其他魚類
+TCR,紅棕烏魴,Rough pomfret,Taractes rubescens,其他魚類
+LAG,月魚,Opah,Lampris guttatus,其他魚類
+MOX,翻車魨,Ocean sunfish,Mola mola,其他魚類
+MRW,矛尾翻車魨,Sharptail mola,Masturus lanceolatus,其他魚類
+RZV,拉氏翻車魨,Slender sunfish,Ranzania laevis,其他魚類
+ALM,單角革單棘魨,Unicorn leatherjacket filefish,Aluterus monoceros,其他魚類
+AWI,橘革單棘魨,Orange filefish,Aluterus schoepfii,其他魚類
+TRG,灰鱗魨,Grey triggerfish,Balistes capriscus,其他魚類
+BVP,斑點鱗魨,Bluespotted triggerfish,Balistes punctatus,其他魚類
+TRI,鱗魨科,"Triggerfishes, durgons nei",Balistidae,其他魚類
+CNT,斑紋疣鱗魨,Rough triggerfish,Canthidermis maculata,其他魚類
+LGH,兔頭魨,Oceanic puffer,Lagocephalus lagocephalus,其他魚類
+DIY,六斑二齒魨（刺河魨）,Porcupinefish,Diodon hystrix,其他魚類
+FLY,飛魚科,Flyingfishes nei,Exocoetidae,其他魚類
+GAR,顎針魚,Garfish,Belone belone,其他魚類
+BEN,鶴鱵科,Needlefishes nei,Belonidae,其他魚類
+SAU,竹刀魚,Atlantic saury,Scomberesox saurus,其他魚類
+CBA,海鱺,Cobia,Rachycentron canadum,其他魚類
+MZZ,海水魚類（未分類）,Marine fishes nei,Osteichthyes,其他魚類
+UNCL,未分類,Unclassified,,其他魚類
+OTH,其他物種（WCPFC 未列名）,Other species (not itemised),,其他魚類
